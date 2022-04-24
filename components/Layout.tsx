@@ -3,9 +3,14 @@ import Head from "next/head"
 import styles from '@/styles/Layout.module.css'
 import Footer from "./Footer"
 import Header from "./Header"
+import Showcase from "./Showcase"
+import { useRouter } from "next/router"
 
 
 const Layout = ({ title, keywords, description, children }) => {
+
+    const router = useRouter()
+
     return (
         <div>
             <Head>
@@ -15,6 +20,9 @@ const Layout = ({ title, keywords, description, children }) => {
             </Head>
 
             <Header />
+
+            {/* se o router.pathname for igual a home entao vai mostrar o showcase somente na home */}
+            {router.pathname === '/' && <Showcase />}
 
             <div className={styles.container}>
                 {children}
